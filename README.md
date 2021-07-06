@@ -62,5 +62,5 @@ install seaborn library:
 | K-Means | -- |
 | K-Nearest Neighbor | 85% |
 | Decision Tree | 81.56% |
-| Random Forest | 88.75* |
+| Random Forest | 88.75% |
 
