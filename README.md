@@ -1,6 +1,5 @@
 # Wine-quality-detection
 
-![screenshot](H:\Python Data\redwine\wine_prediction\static\images\image.jpg?raw=true)
 
 ## Visualization and Machine Learning models
 
