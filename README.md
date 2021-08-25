@@ -1,5 +1,6 @@
-# Wine-quality-detection
+# Wine-quality-prediction
 
+![Screenshot](wine_prediction/static/images/Screenshot.png)
 
 ## Visualization and Machine Learning models
 
