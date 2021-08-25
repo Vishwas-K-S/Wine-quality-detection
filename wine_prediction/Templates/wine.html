@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Wine Quality Prediction</title>
+    
+</head>
+<style>
+  * {
+  box-sizing: border-box;
+}
+  body {
+    background-image: url("{%static 'images/image.jpg'%}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
+  body > *:not(#loading) {
+    filter: blur(3px);
+  }
+  
+  body h1 {
+    color:bisque
+  }
+  body form {
+    background-color: rgba(151, 212, 253, 0.342);
+    border-radius:20px;
+    
+  }
+
+  label {
+    font-weight: bolder;
+    font-size: larger;
+    color:rgb(12, 31, 61);
+  }
+  .jumbotron{
+    background-color: rgba(151, 212, 253, 0.295);
+  }
+  h2 {
+    font-weight:bolder;
+    color:rgb(11, 255, 194);
+  }
+  input[type='number'] {
+    background-color:rgba(200, 231, 238, 0.63);
+    font-size:large;
+    font-weight: bold;
+    color: rgb(82, 88, 94);
+    border-radius:15px;
+    border-color: rgb(77, 79, 80);
+  }
+</style>
+<body>
+    <div class="container" id="loading">
+        <h1 class = 'text-center mt-5 mb-5'  >Wine Quality prediction!!</h1>
+        <form class="needs-validation border p-5 pb-2" action='result' method='POST' id="loading" novalidate>
+          {% csrf_token %}
+            <div class="form-row p-2">
+              <div class="col-md-6 mb-1">
+                <label for="validationTooltip01">Fixed Acidity:</label>
+                <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  4.5 - 15.9" name="fixed_acidity" required>
+                <div class="valid-tooltip">
+                </div>
+              </div>
+              <div class="col-md-6 mb-1">
+                <label for="validationTooltip01">Volatile Acidity:</label>
+                <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  0.1 - 1.5" name="volatile_acidity" required>
+                <div class="valid-tooltip">
+                </div>
+              </div>
+            </div>
+            <div class="form-row p-2">
+              <div class="col-md-6 mb-1">
+                <label for="validationTooltip01">Citric Acid:</label>
+                <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  0 - 1" name="citric_acid" required>
+                <div class="valid-tooltip">
+                </div>
+              </div>
+              <div class="col-md-6 mb-1">
+                <label for="validationTooltip01">Residual Sugar:</label>
+                <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  0.9 - 15.5" name="residual_sugar" required>
+                <div class="valid-tooltip">
+                </div>
+              </div>
+            </div>
+            <div class="form-row p-2">
+              <div class="col-md-6 mb-1">
+                <label for="validationTooltip01">Chlorides:</label>
+                <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  0.01 - 0.6" name="chlorides" required>
+                <div class="valid-tooltip">
+                </div>
+              </div>
+              <div class="col-md-6 mb-1">
+                <label for="validationTooltip01">Free Sulfur Dioxide:</label>
+                <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  1 - 72" name="free_sulfur_dioxide" required>
+                <div class="valid-tooltip">
+                </div>
+              </div>
+            </div>
+            <div class="form-row p-2">
+              <div class="col-md-6 mb-1">
+                <label for="validationTooltip01">Total Sulfur Dioxide:</label>
+                <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  6 - 289" name="total_sulfur_dioxide" required>
+                <div class="valid-tooltip">
+                </div>
+              </div>
+              <div class="col-md-6 mb-1">
+                <label for="validationTooltip01">Density:</label>
+                <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  0.9 - 1" name="density" required>
+                <div class="valid-tooltip">
+                </div>
+              </div>
+            </div>
+            <div class="form-row p-2">
+              <div class="col-md-6 mb-1">
+                <label for="validationTooltip01">pH:</label>
+                <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  2.7 - 4" name="pH" required>
+                <div class="valid-tooltip">
+                </div>
+              </div>
+              <div class="col-md-6 mb-1">
+                <label for="validationTooltip01">Sulphates:</label>
+                <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  0.33 - 2" name="sulphates" required>
+                <div class="valid-tooltip">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3 d-block mx-auto">
+              <label for="validationTooltip01">Alcohol:</label>
+              <input type="number" class="form-control" id="validationTooltip01" placeholder="Enter value b/w  8.4 - 14.9" name="alcohol" required>
+              <div class="valid-tooltip">
+              </div>
+            </div>
+            <div class="col pb-2 mb-3">
+                <button class="btn-lg btn-primary mx-auto d-block mt-5" type="submit">Predict</button>
+            </div>
+        </form>
+        <div class="container mt-3">
+            <div class="jumbotron">
+                <h2 class='text-center'>The wine quality is : {{ res }}</h2>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
